@@ -12,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import ca.dawson511.wheretoeat.databinding.ActivityMainBinding
 import kotlin.random.Random
 import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationManager
+import android.location.LocationRequest
+import androidx.core.app.ActivityCompat
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         val randomFood = getRandomFood()
 
-//        binding.foodImage.setOnClickListener { getMap() }
+        binding.foodImage.setOnClickListener { getMap() }
 
 
         binding.searchButton.setOnClickListener {
@@ -58,20 +64,24 @@ class MainActivity : AppCompatActivity() {
 
        }
 
-        fun getMap(geoLocation: Uri) {
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                data = geoLocation
-            }
-            if (intent.resolveActivity(packageManager) != null) {
-                startActivity(intent)
-            }
+        // * For now latitude and longitude hardcoded
+        //Function that shows the closest restaurants on the map based on the chosen food
+        fun getMap() {
+            val locationUri = Uri.parse("geo:0,0?q=restaurants")
+
+            val mapIntent = Intent(Intent.ACTION_VIEW, locationUri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            startActivity(mapIntent)
+
         }
 
+        //Function that searches for more info for the specified food
         fun getSearch(randomFood : String) {
             val queryUrl: Uri = Uri.parse("${infoObj.SEARCH_PREFIX}${randomFood}")
             val intent = Intent(Intent.ACTION_VIEW, queryUrl)
             startActivity(intent)
         }
+
 
 
 }
