@@ -1,9 +1,11 @@
 package ca.dawson511.wheretoeat
 
 
-import android.R
+//import android.R
+//import android.R
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import ca.dawson511.wheretoeat.databinding.ActivityMainBinding
 import kotlin.random.Random
@@ -18,15 +20,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        binding.tryAgain.setOnClickListener(getRandomFood())
+        val tryAgainButton = binding.tryAgain
+        tryAgainButton.setOnClickListener { getRandomFood() }
+
     }
 
-        //Function that chooses random food from list and updates the text and image.
-//        fun getRandomFood(){
-//            val foods = this.resources.getStringArray(R.array.foods)
-//            val randomIndex = Random.nextInt(foods.size)
-//            val randomFood = foods[randomIndex]
-//      }
+       // Function that chooses random food from list and updates the text and image.
+        fun getRandomFood(){
+            val foods = this.resources.getStringArray(R.array.foods)
+            val randomIndex = Random.nextInt(foods.size)
+            val randomFood = foods[randomIndex]
+            val txtFood = binding.foodText
+            txtFood.text= randomFood
+      }
 
 
 }
