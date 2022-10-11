@@ -55,7 +55,11 @@ class MainActivity : AppCompatActivity() {
             txtFood.text= randomFood
 
            val imageId = resources.getIdentifier(randomFood.lowercase(), "drawable", packageName)
-           binding.foodImage.setImageResource(imageId)
+           if (imageId == 0) {
+               binding.foodImage.setImageResource(resources.getIdentifier("default_food", "drawable", packageName))
+           } else {
+               binding.foodImage.setImageResource(imageId)
+           }
 
            return randomFood
 
