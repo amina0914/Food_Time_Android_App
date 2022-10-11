@@ -3,21 +3,12 @@ package ca.dawson511.wheretoeat
 
 //import android.R
 //import android.R
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import ca.dawson511.wheretoeat.databinding.ActivityMainBinding
 import kotlin.random.Random
-import android.Manifest
-import android.annotation.SuppressLint
-import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationManager
-import android.location.LocationRequest
-import androidx.core.app.ActivityCompat
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +42,8 @@ class MainActivity : AppCompatActivity() {
                 getSearch(randomFood)
             }
         }
+
+        binding.editListButton.setOnClickListener { callListActivity() }
     }
 
        // Function that chooses random food from list and updates the text and image.
@@ -83,6 +76,11 @@ class MainActivity : AppCompatActivity() {
         fun getSearch(randomFood : String) {
             val queryUrl: Uri = Uri.parse("${infoObj.SEARCH_PREFIX}${randomFood}")
             val intent = Intent(Intent.ACTION_VIEW, queryUrl)
+            startActivity(intent)
+        }
+
+        fun callListActivity() {
+            val intent = Intent(this, FoodList::class.java)
             startActivity(intent)
         }
 
