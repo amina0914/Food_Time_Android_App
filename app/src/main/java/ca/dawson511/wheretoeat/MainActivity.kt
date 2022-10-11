@@ -3,9 +3,9 @@ package ca.dawson511.wheretoeat
 
 //import android.R
 //import android.R
+import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import ca.dawson511.wheretoeat.databinding.ActivityMainBinding
 import kotlin.random.Random
@@ -32,7 +32,11 @@ class MainActivity : AppCompatActivity() {
             val randomFood = foods[randomIndex]
             val txtFood = binding.foodText
             txtFood.text= randomFood
-      }
+
+           val imageId = resources.getIdentifier(randomFood.lowercase(), "drawable", packageName)
+           binding.foodImage.setImageResource(imageId)
+
+       }
 
 
 }
