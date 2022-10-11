@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         val tryAgainButton = binding.tryAgain
         tryAgainButton.setOnClickListener { getRandomFood() }
 
+        getRandomFood()
     }
 
        // Function that chooses random food from list and updates the text and image.
