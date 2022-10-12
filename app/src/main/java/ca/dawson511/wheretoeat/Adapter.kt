@@ -2,20 +2,18 @@ package ca.dawson511.wheretoeat
 
 //import android.R
 import android.content.Context
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
-import ca.dawson511.wheretoeat.databinding.ActivityFoodListBinding
-
 
 
 class Adapter (var context: Context, var foodsList: Array<String>) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
+
+    lateinit var foodslist: Array<String>
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,7 +34,8 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
 //        holder.images.setImageResource(res)
 //        holder.text.text = courseName[position] as String
 
-        val food = foodsList[position]
+        this.foodslist = foodsList
+        val food = foodslist[position]
         val context = holder.view.context
         holder.button.text = food
 
@@ -46,6 +45,10 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
 
     override fun getItemCount(): Int = foodsList.size
 
+//    fun addItem(position: Int, viewModel: ViewModel?) {
+//        list.add(position, viewModel)
+//        notifyItemInserted(position)
+//    }
 
 
 

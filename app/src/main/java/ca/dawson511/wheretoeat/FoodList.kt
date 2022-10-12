@@ -30,10 +30,9 @@ class FoodList : AppCompatActivity() {
         val recyclerView = findViewById(R.id.rv_foods) as RecyclerView
         val linearLayoutManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-//        val adapter: Adapter = Adapter(this@FoodList, list)
-        recyclerView.adapter = Adapter(this, list.toTypedArray())
-
+//        recyclerView.adapter = Adapter(this, list.toTypedArray())
+        val adapter = Adapter(this, list.toTypedArray())
+        recyclerView.adapter = adapter
 
 
 
@@ -41,6 +40,8 @@ class FoodList : AppCompatActivity() {
         binding.addButton.setOnClickListener {
             list.add(binding.newFoodText.text.toString())
             binding.foodList.text = list.toString()
+            adapter.notifyItemInserted(list.size-1 )
+
         }
 
         //Removes the food specified in the text box from the list (if possible), the update textview
