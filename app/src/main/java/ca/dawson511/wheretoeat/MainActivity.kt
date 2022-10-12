@@ -98,16 +98,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(request: Int, result: Int, i: Intent?) {
         super.onActivityResult(request, result, i)
-//        val data: Array<String>
         when (result) {
             RESULT_OK -> {
                 if (i != null) {
                     foodsList = i.extras!!.getStringArray("newList") as Array<String>
-//                    getRandomFood(data)
                 }
-
-            }
-            RESULT_CANCELED -> {
 
             }
 
