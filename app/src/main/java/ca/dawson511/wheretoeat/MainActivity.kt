@@ -3,6 +3,7 @@ package ca.dawson511.wheretoeat
 
 //import android.R
 //import android.R
+//import android.R
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -14,21 +15,27 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity() {
 
     private val infoObj = object {
-        val LETTER = "letter"
         val SEARCH_PREFIX = "https://www.google.com/search?q="
     }
 
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var foodsList: Array<String>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val tryAgainButton = binding.tryAgain
-        tryAgainButton.setOnClickListener { getRandomFood() }
 
-        val randomFood = getRandomFood()
+        foodsList = resources.getStringArray(R.array.foods)
+
+        val randomFood = getRandomFood(foodsList)
+
+        val tryAgainButton = binding.tryAgain
+        tryAgainButton.setOnClickListener { getRandomFood(foodsList) }
+
 
         binding.foodImage.setOnClickListener {
             if (randomFood != null) {
@@ -43,12 +50,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.editListButton.setOnClickListener { callListActivity() }
+        binding.editListButton.setOnClickListener { callListActivity(foodsList ) }
     }
 
        // Function that chooses random food from list and updates the text and image.
-        fun getRandomFood(): String? {
-            val foods = this.resources.getStringArray(R.array.foods)
+        fun getRandomFood(foods : Array<String>): String? {
+//            val foods = this.resources.getStringArray(R.array.foods)
             val randomIndex = Random.nextInt(foods.size)
             val randomFood = foods[randomIndex]
             val txtFood = binding.foodText
@@ -83,11 +90,30 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        fun callListActivity() {
+        fun callListActivity(foods : Array<String>) {
             val intent = Intent(this, FoodList::class.java)
-            startActivity(intent)
+            intent.putExtra("foodsList", foods);
+            startActivityForResult(intent,0)
         }
 
+    override fun onActivityResult(request: Int, result: Int, i: Intent?) {
+        super.onActivityResult(request, result, i)
+//        val data: Array<String>
+        when (result) {
+            RESULT_OK -> {
+                if (i != null) {
+                    foodsList = i.extras!!.getStringArray("newList") as Array<String>
+//                    getRandomFood(data)
+                }
+
+            }
+            RESULT_CANCELED -> {
+
+            }
+
+        }
+
+    }
 
 
 }
