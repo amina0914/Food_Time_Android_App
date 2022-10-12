@@ -1,6 +1,6 @@
 package ca.dawson511.wheretoeat
 
-import android.R
+//import android.R
 import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
