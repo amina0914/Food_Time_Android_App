@@ -39,8 +39,12 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
         val context = holder.view.context
         holder.button.text = food
 
-//        holder.button.setOnClickListener {
-//            ...
+        holder.button.setOnClickListener {
+                val food = holder.button.text.toString()
+                foodslist.toMutableList().remove(food)
+                val foodId = foodsList.indexOf(food)
+                notifyItemRemoved(foodId)
+            }
         }
 
     override fun getItemCount(): Int = foodsList.size
