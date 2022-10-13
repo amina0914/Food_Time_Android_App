@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Где поесть</string>
+    <string name="eat_title">поешь:</string>
+    <string name="reroll">ПОВТОРИТЬ</string>
+    <string name="info">БОЛЬШЕ ИНФО</string>
+    <string name="list">ИЗМЕНИТЬ СПИСОК</string>
+    <string name="save">Сохранить</string>
+    <string name="enter_a_food">Введите еду</string>
+    <string name="add">Добавить</string>
+    <string name="remove">Удалить</string>
+    <string-array name="foods">
+        <item>Суши</item>
+        <item>Пицца</item>
+        <item>Бургер</item>
+        <item>Салат</item>
+        <item>Путин</item>
+        <item>Паста</item>
+        <item>Курица</item>
+    </string-array>
+    <string name="change_lang">Изменить язык</string>
+</resources>

@@ -62,13 +62,13 @@ class MainActivity : AppCompatActivity() {
         val changeLangButton: Button = findViewById(R.id.buttonChangeLang)
         changeLangButton.setText(R.string.change_lang)
         changeLangButton.setOnClickListener {
-            val languages = arrayOf("عربى", "Français", "English")
+            val languages = arrayOf("Русский", "Français", "English")
             val langSelectorBuilder = AlertDialog.Builder(this@MainActivity)
             langSelectorBuilder.setTitle("Choose language:")
             langSelectorBuilder.setSingleChoiceItems(languages, -1) { dialog, selection ->
                 when(selection) {
                     0 -> {
-                        setLocale("ar")
+                        setLocale("ru")
                     }
                     1 -> {
                         setLocale("fr")
