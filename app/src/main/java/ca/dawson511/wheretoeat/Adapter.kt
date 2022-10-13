@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 
@@ -14,6 +15,7 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     private var foodslist: MutableList<String> = foodsList.toMutableList()
+    private var thisContext : Context = context
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,8 +40,13 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
         holder.button.setOnClickListener {
                 val food = holder.button.text.toString()
                 val foodId = foodslist.indexOf(food)
-                foodslist.remove(food)
-                notifyItemRemoved(foodId)
+                if (this.foodslist.size == 1) {
+                    val message = "Last item of the list can not be removed"
+                    Toast.makeText(thisContext, message, Toast.LENGTH_LONG).show()
+                } else {
+                    foodslist.remove(food)
+                    notifyItemRemoved(foodId)
+                }
             }
         }
 
