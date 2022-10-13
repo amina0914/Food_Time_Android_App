@@ -10,5 +10,7 @@
         <item>Burgers</item>
         <item>Salad</item>
         <item>Poutine</item>
+        <item>Pasta</item>
+        <item>Chicken</item>
     </string-array>
 </resources>
