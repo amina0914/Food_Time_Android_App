@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
+        android:fontFamily="@font/aclonica"
         android:text="@string/eat_title"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
