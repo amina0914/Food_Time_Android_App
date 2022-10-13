@@ -38,9 +38,11 @@ class FoodList : AppCompatActivity() {
 
         //Adds the food specified in the text box to the list, then update textview
         binding.addButton.setOnClickListener {
-            list.add(binding.newFoodText.text.toString())
+            val newFood = binding.newFoodText.text.toString()
+            list.add(newFood)
             binding.foodList.text = list.toString()
-            adapter.notifyItemInserted(list.size-1 )
+//            adapter.notifyItemInserted(list.size-1 )
+            adapter.addItem(newFood)
 
         }
 
