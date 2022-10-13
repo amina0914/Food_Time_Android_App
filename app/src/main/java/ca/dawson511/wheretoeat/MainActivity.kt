@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
        }
 
-        // * For now latitude and longitude hardcoded
+
         //Function that shows the closest restaurants on the map based on the chosen food
         fun getMap(randomFood : String) {
             val locationUri = Uri.parse("geo:45,73?q=${randomFood}")
