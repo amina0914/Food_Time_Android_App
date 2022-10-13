@@ -46,11 +46,13 @@ class FoodList : AppCompatActivity() {
 
         }
 
-        //Removes the food specified in the text box from the list (if possible), the update textview
-        binding.removeButton.setOnClickListener {
-            list.remove(binding.newFoodText.text.toString())
-            binding.foodList.text = list.toString()
-        }
+//        //Removes the food specified in the text box from the list (if possible), the update textview
+//        binding.removeButton.setOnClickListener {
+//            list.remove(binding.newFoodText.text.toString())
+//            binding.foodList.text = list.toString()
+//        }
+
+
 
         binding.saveButton.setOnClickListener { returnData() }
 
@@ -73,6 +75,10 @@ class FoodList : AppCompatActivity() {
             setResult(RESULT_CANCELED, i)
         }
         super.finish()
+    }
+
+    fun removeFromList(foodToRemove : String) {
+        list.remove(foodToRemove)
     }
 
 

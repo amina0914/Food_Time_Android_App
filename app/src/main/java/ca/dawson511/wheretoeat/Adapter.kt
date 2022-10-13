@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -45,6 +44,7 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
                     Toast.makeText(thisContext, message, Toast.LENGTH_LONG).show()
                 } else {
                     foodslist.remove(food)
+                    (context as FoodList).removeFromList(food)
                     notifyItemRemoved(foodId)
                 }
             }
