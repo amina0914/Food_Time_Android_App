@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 class Adapter (var context: Context, var foodsList: Array<String>) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-    lateinit var foodslist: Array<String>
+    private var foodslist: MutableList<String> = foodsList.toMutableList()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,31 +29,21 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        // TypeCast Object to int type
-//        val res = courseImg[position] as Int
-//        holder.images.setImageResource(res)
-//        holder.text.text = courseName[position] as String
 
-        this.foodslist = foodsList
+//        this.foodslist = foodsList.toMutableList()
         val food = foodslist[position]
         val context = holder.view.context
         holder.button.text = food
 
         holder.button.setOnClickListener {
                 val food = holder.button.text.toString()
-                foodslist.toMutableList().remove(food)
+                foodslist.remove(food)
                 val foodId = foodsList.indexOf(food)
                 notifyItemRemoved(foodId)
             }
         }
 
-    override fun getItemCount(): Int = foodsList.size
-
-//    fun addItem(position: Int, viewModel: ViewModel?) {
-//        list.add(position, viewModel)
-//        notifyItemInserted(position)
-//    }
-
+    override fun getItemCount(): Int = foodslist.size
 
 
     // Initializing the Views
