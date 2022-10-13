@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         // * For now latitude and longitude hardcoded
         //Function that shows the closest restaurants on the map based on the chosen food
         fun getMap(randomFood : String) {
-            val locationUri = Uri.parse("geo:0,0?q=${randomFood}")
+            val locationUri = Uri.parse("geo:45,73?q=${randomFood}")
 
             val mapIntent = Intent(Intent.ACTION_VIEW, locationUri)
             mapIntent.setPackage("com.google.android.apps.maps")
