@@ -44,9 +44,8 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
         }
 
     fun addItem(newFood : String) {
-        val food = newFood
-        foodslist.add(food)
-        val foodId = foodsList.indexOf(food)
+        foodslist.add(newFood)
+        val foodId = foodslist.indexOf(newFood)
         notifyItemInserted(foodId)
     }
 
