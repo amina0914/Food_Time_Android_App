@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OùManger</string>
+    <string name="save">Sauvegarder</string>
+    <string name="enter_a_food">Entrer un plat</string>
+    <string name="add">Ajouter</string>
+    <string name="remove">Supprimer</string>
+    <string name="change_lang">Changer de langue</string>
+    <string-array name="foods">
+        <item>Sushi</item>
+        <item>Pizza</item>
+        <item>Burgers</item>
+        <item>Salade</item>
+        <item>Poutine</item>
+        <item>Pâtes</item>
+        <item>Poulet</item>
+    </string-array>
+</resources>

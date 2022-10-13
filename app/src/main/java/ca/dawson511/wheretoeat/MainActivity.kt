@@ -4,11 +4,16 @@ package ca.dawson511.wheretoeat
 //import android.R
 //import android.R
 //import android.R
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.LocaleList
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import ca.dawson511.wheretoeat.databinding.ActivityMainBinding
+import java.util.*
 import kotlin.random.Random
 
 
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadLocale()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -51,6 +57,47 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.editListButton.setOnClickListener { callListActivity(foodsList ) }
+
+
+        val changeLangButton: Button = findViewById(R.id.buttonChangeLang)
+        changeLangButton.setText(R.string.change_lang)
+        changeLangButton.setOnClickListener {
+            val languages = arrayOf("عربى", "Français", "English")
+            val langSelectorBuilder = AlertDialog.Builder(this@MainActivity)
+            langSelectorBuilder.setTitle("Choose language:")
+            langSelectorBuilder.setSingleChoiceItems(languages, -1) { dialog, selection ->
+                when(selection) {
+                    0 -> {
+                        setLocale("ar")
+                    }
+                    1 -> {
+                        setLocale("fr")
+                    }
+                    2 -> {
+                        setLocale("en")
+                    }
+                }
+                recreate()
+                dialog.dismiss()
+            }
+            langSelectorBuilder.create().show()
+        }
+    }
+
+    private fun setLocale(localeToSet: String) {
+        val localeListToSet = LocaleList(Locale(localeToSet))
+        LocaleList.setDefault(localeListToSet)
+        resources.configuration.setLocales(localeListToSet)
+        resources.updateConfiguration(resources.configuration, resources.displayMetrics)
+        val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+        sharedPref.putString("locale_to_set", localeToSet)
+        sharedPref.apply()
+    }
+
+    private fun loadLocale() {
+        val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val localeToSet: String = sharedPref.getString("locale_to_set", "")!!
+        setLocale(localeToSet)
     }
 
        // Function that chooses random food from list and updates the text and image.

@@ -13,4 +13,5 @@
         <item>Pasta</item>
         <item>Chicken</item>
     </string-array>
+    <string name="change_lang">Change language</string>
 </resources>
