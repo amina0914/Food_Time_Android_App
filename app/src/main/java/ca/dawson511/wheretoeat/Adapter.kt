@@ -37,8 +37,8 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
 
         holder.button.setOnClickListener {
                 val food = holder.button.text.toString()
+                val foodId = foodslist.indexOf(food)
                 foodslist.remove(food)
-                val foodId = foodsList.indexOf(food)
                 notifyItemRemoved(foodId)
             }
         }
