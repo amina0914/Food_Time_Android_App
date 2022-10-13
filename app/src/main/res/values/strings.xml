@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">WhereToEat</string>
+    <string name="eat_title">You should eat:</string>
+    <string name="reroll">REROLL</string>
+    <string name="info">MORE INFO</string>
+    <string name="list">CHANGE LIST</string>
     <string name="save">Save Changes</string>
     <string name="enter_a_food">Enter a food</string>
     <string name="add">Add</string>

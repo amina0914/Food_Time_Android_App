@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="You should eat:"
+        android:text="@string/eat_title"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.29"
@@ -51,19 +51,19 @@
             android:layout_width="100dp"
             android:layout_marginHorizontal="10dp"
             android:layout_height="match_parent"
-            android:text="Reroll"/>
+            android:text="@string/reroll"/>
         <Button
             android:id="@+id/search_button"
             android:layout_width="100dp"
             android:layout_marginHorizontal="10dp"
             android:layout_height="match_parent"
-            android:text="More info"/>
+            android:text="@string/info"/>
         <Button
             android:id="@+id/edit_list_button"
             android:layout_width="100dp"
             android:layout_marginHorizontal="10dp"
             android:layout_height="match_parent"
-            android:text="Change List"/>
+            android:text="@string/list"/>
     </LinearLayout>
 
     <Button

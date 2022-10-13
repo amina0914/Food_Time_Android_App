@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OùManger</string>
+    <string name="eat_title">Mangez:</string>
+    <string name="reroll">RELANCER</string>
+    <string name="info">"PLUS D'INFO"</string>
+    <string name="list">CHANGER LA LISTE</string>
     <string name="save">Sauvegarder</string>
     <string name="enter_a_food">Entrer un plat</string>
     <string name="add">Ajouter</string>
