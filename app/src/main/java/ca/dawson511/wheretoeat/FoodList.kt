@@ -1,3 +1,10 @@
+/**
+ * Author: Amina Turdalieva
+ * Date: 14-10-2022
+ * This is the food list activity that is responsible for updating the array of foods.
+ * The user can add foods to the list or remove them.
+ * */
+
 package ca.dawson511.wheretoeat
 
 //import android.R
@@ -22,7 +29,6 @@ class FoodList : AppCompatActivity() {
 
         binding = ActivityFoodListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        list = (this.resources.getStringArray(R.array.foods).toMutableList())
         list = getIntent().getExtras()?.getStringArray("foodsList")?.toMutableList()!!
 
 
@@ -30,28 +36,17 @@ class FoodList : AppCompatActivity() {
         val recyclerView = findViewById(R.id.rv_foods) as RecyclerView
         val linearLayoutManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.adapter = Adapter(this, list.toTypedArray())
         val adapter = Adapter(this, list.toTypedArray())
         recyclerView.adapter = adapter
-
 
 
         //Adds the food specified in the text box to the list, then update textview
         binding.addButton.setOnClickListener {
             val newFood = binding.newFoodText.text.toString()
             list.add(newFood)
-//            binding.foodList.text = list.toString()
-//            adapter.notifyItemInserted(list.size-1 )
+
             adapter.addItem(newFood)
-
         }
-
-//        //Removes the food specified in the text box from the list (if possible), the update textview
-//        binding.removeButton.setOnClickListener {
-//            list.remove(binding.newFoodText.text.toString())
-//            binding.foodList.text = list.toString()
-//        }
-
 
 
         binding.saveButton.setOnClickListener { returnData() }
@@ -59,7 +54,7 @@ class FoodList : AppCompatActivity() {
 
     }
 
-
+    //Function used for the passing of data with the main activity activity
     fun returnData() {
         val i = Intent()
         i.putExtra("newList", list.toTypedArray())
@@ -68,6 +63,7 @@ class FoodList : AppCompatActivity() {
         finish()
     }
 
+    //Function that defines what to return in case of errors
     override fun finish() {
         if (!returnList) {
             val i = Intent()
@@ -77,6 +73,7 @@ class FoodList : AppCompatActivity() {
         super.finish()
     }
 
+    //Function that removes an item from the list of foods
     fun removeFromList(foodToRemove : String) {
         list.remove(foodToRemove)
     }

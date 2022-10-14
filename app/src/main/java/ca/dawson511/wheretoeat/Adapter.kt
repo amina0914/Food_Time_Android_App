@@ -1,3 +1,8 @@
+/**
+ * Author: Amina Turdalieva
+ * Date: 14-10-2022
+ * This is the adapter class
+ * */
 package ca.dawson511.wheretoeat
 
 //import android.R
@@ -19,19 +24,15 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-//        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-
         val layout = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.each_food_view, parent, false)
 
         return ViewHolder(layout)
-//        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-//        this.foodslist = foodsList.toMutableList()
         val food = foodslist[position]
         val context = holder.view.context
         holder.button.text = food
@@ -39,6 +40,7 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
         holder.button.setOnClickListener {
                 val food = holder.button.text.toString()
                 val foodId = foodslist.indexOf(food)
+                // If its the last item from the list, it can not be removed
                 if (this.foodslist.size == 1) {
                     val message = "Last item of the list can not be removed"
                     Toast.makeText(thisContext, message, Toast.LENGTH_LONG).show()
@@ -50,6 +52,7 @@ class Adapter (var context: Context, var foodsList: Array<String>) :
             }
         }
 
+    // Function that adds the food to the list of foods
     fun addItem(newFood : String) {
         foodslist.add(newFood)
         val foodId = foodslist.indexOf(newFood)

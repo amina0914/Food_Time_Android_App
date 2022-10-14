@@ -1,8 +1,15 @@
+/**
+ * Author: Amina Turdalieva
+ * Date: 14-10-2022
+ * This is the WhereToEat application. When started it randomly chooses a food to eat.
+ * The user can reroll to change the food, or even change the list by adding or removing items.
+ * When the image is clicked, the user is referred to the google maps application to find the nearest restaurant with that chosen food.
+ * The user also has the option to click on more info, which will redirect to a google search about the food chosen.
+ * Finally, the user can change the language of the application.
+ * */
+
 package ca.dawson511.wheretoeat
 
-
-//import android.R
-//import android.R
 //import android.R
 import android.app.AlertDialog
 import android.content.Context
@@ -16,7 +23,7 @@ import ca.dawson511.wheretoeat.databinding.ActivityMainBinding
 import java.util.*
 import kotlin.random.Random
 
-
+//This is the main class where the interaction of the first page happens.
 class MainActivity : AppCompatActivity() {
 
     private val infoObj = object {
@@ -34,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        //Gets the array of foods from resources
         foodsList = resources.getStringArray(R.array.foods)
 
         val randomFood = getRandomFood(foodsList)
@@ -58,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.editListButton.setOnClickListener { callListActivity(foodsList ) }
 
-
+        // The following code sets the translation to three languages: english, french and russian
         val changeLangButton: Button = findViewById(R.id.buttonChangeLang)
         changeLangButton.setText(R.string.change_lang)
         changeLangButton.setOnClickListener {
@@ -84,25 +91,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setLocale(localeToSet: String) {
-        val localeListToSet = LocaleList(Locale(localeToSet))
-        LocaleList.setDefault(localeListToSet)
-        resources.configuration.setLocales(localeListToSet)
-        resources.updateConfiguration(resources.configuration, resources.displayMetrics)
-        val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
-        sharedPref.putString("locale_to_set", localeToSet)
-        sharedPref.apply()
-    }
+        //Function used for the translation feature
+        private fun setLocale(localeToSet: String) {
+            val localeListToSet = LocaleList(Locale(localeToSet))
+            LocaleList.setDefault(localeListToSet)
+            resources.configuration.setLocales(localeListToSet)
+            resources.updateConfiguration(resources.configuration, resources.displayMetrics)
+            val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+            sharedPref.putString("locale_to_set", localeToSet)
+            sharedPref.apply()
+        }
 
-    private fun loadLocale() {
-        val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val localeToSet: String = sharedPref.getString("locale_to_set", "")!!
-        setLocale(localeToSet)
-    }
+        //Function used for the translation feature
+        private fun loadLocale() {
+            val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+            val localeToSet: String = sharedPref.getString("locale_to_set", "")!!
+            setLocale(localeToSet)
+        }
 
        // Function that chooses random food from list and updates the text and image.
         fun getRandomFood(foods : Array<String>): String? {
-//            val foods = this.resources.getStringArray(R.array.foods)
             val randomIndex = Random.nextInt(foods.size)
             val randomFood = foods[randomIndex]
             val txtFood = binding.foodText
@@ -137,25 +145,26 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //Function used for the passing of data with the foodlist activity
         fun callListActivity(foods : Array<String>) {
             val intent = Intent(this, FoodList::class.java)
             intent.putExtra("foodsList", foods);
             startActivityForResult(intent,0)
         }
 
-    override fun onActivityResult(request: Int, result: Int, i: Intent?) {
-        super.onActivityResult(request, result, i)
-        when (result) {
-            RESULT_OK -> {
-                if (i != null) {
-                    foodsList = i.extras!!.getStringArray("newList") as Array<String>
+        //Function used for the results from the foodlist activity
+        override fun onActivityResult(request: Int, result: Int, i: Intent?) {
+            super.onActivityResult(request, result, i)
+            when (result) {
+                RESULT_OK -> {
+                    if (i != null) {
+                        foodsList = i.extras!!.getStringArray("newList") as Array<String>
+                    }
+
                 }
 
             }
 
         }
-
-    }
-
 
 }
