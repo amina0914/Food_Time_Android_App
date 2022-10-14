@@ -40,7 +40,7 @@ class FoodList : AppCompatActivity() {
         binding.addButton.setOnClickListener {
             val newFood = binding.newFoodText.text.toString()
             list.add(newFood)
-            binding.foodList.text = list.toString()
+//            binding.foodList.text = list.toString()
 //            adapter.notifyItemInserted(list.size-1 )
             adapter.addItem(newFood)
 
